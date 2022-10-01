@@ -7,13 +7,20 @@ void bubbleSort(vector<int> &arr ){
         return;
     }
 
+    bool swapped;
     for (int i = 0; i < arr.size(); i++){
+        swapped = false;
         for (int j = 0; j < arr.size()-i-1; j++){
             // condition for swapping (if any element is greater than the next element, then swap them)
             if (arr[j+1] < arr[j]){
                 swap(arr[j+1], arr[j]);
+                swapped = true;
             }
         }
+    }
+
+    if(swapped==false){
+        break;
     }
 }
 
