@@ -1,0 +1,30 @@
+class Solution{  
+  public:
+  int dp[1001][1001];
+// Returns the length of the longest palindromic subsequence
+// in seq
+int lps(string& s1, string& s2, int n1, int n2)
+{
+    if (n1 == 0 || n2 == 0) {
+        return 0;
+    }
+    if (dp[n1][n2] != -1) {
+        return dp[n1][n2];
+    }
+    if (s1[n1 - 1] == s2[n2 - 1]) {
+        return dp[n1][n2] = 1 + lps(s1, s2, n1 - 1, n2 - 1);
+    }
+    else {
+        return dp[n1][n2] = max(lps(s1, s2, n1 - 1, n2),
+                                lps(s1, s2, n1, n2 - 1));
+    }
+}
+    int countMin(string str){
+    //complete the function here
+    string s1=str;
+      memset(dp, -1, sizeof(dp));
+    reverse(s1.begin(),s1.end());
+    int x=lps(str,s1,s1.size(),s1.size());
+    return str.size()-x;
+    }
+};
